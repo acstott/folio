@@ -1,12 +1,12 @@
 # folio
 
-A TypeScript monorepo with a React + Webpack dev server app (`apps/web`) and an API proxy setup for local development.
+A TypeScript monorepo with a React + Webpack dev server app (`apps/web`) and an API proxy setup for local development
 
 ## Requirements
 
 - Node.js 20+ (recommended)
 - npm 9+ (workspaces)
-- (Optional) Docker for services you may add later
+- Docker + docker compose
 
 ## Repo structure
 
@@ -31,8 +31,8 @@ folio/
 ![Card Layout](./assets/card-layout.png)
 
 > Notes:
-> - `apps/web/webpack.config.ts` is authored as an **ES module** (uses `import ...`), so `require()` is not used.
-> - `webpack.config.ts` narrows `mode` to valid webpack values (`development | production | none`) to keep TypeScript happy.
+> - `apps/web/webpack.config.ts` is authored as an **ES module** (uses `import ...`), so `require()` is not used
+> - `webpack.config.ts` narrows `mode` to valid webpack values (`development | production | none`)
 
 ## Getting started
 
@@ -56,21 +56,15 @@ This runs the `apps/web` workspace dev server (Webpack Dev Server) on:
 
 ### API proxy
 
-The dev server proxies API requests to your backend:
+The dev server proxies API requests to the backend:
 
 - Requests starting with `/api` → `http://localhost:4000`
 
-This is configured in `apps/web/webpack.config.ts` under `devServer.proxy`.
+This is configured in `apps/web/webpack.config.ts` under `devServer.proxy`
 
 ## Useful scripts
 
-From the repo root (recommended):
-
-```bash
-npm -w web run dev
-```
-
-Or via the convenience script (if present in root `package.json`):
+From the repo root:
 
 ```bash
 npm run web:dev
@@ -78,9 +72,9 @@ npm run web:dev
 
 Common additions you may want:
 
-- `npm -w web run build` (production bundle)
-- `npm -w web run lint` (if/when you add linting)
-- `npm -w web run test` (if/when you add tests)
+- `npm -w web run build`
+- `npm -w web run lint`
+- `npm -w web run test`
 
 ## Webpack config highlights (apps/web)
 
@@ -90,13 +84,6 @@ Common additions you may want:
 - **TypeScript:** `ts-loader` using `apps/web/tsconfig.json`
 - **HTML:** `html-webpack-plugin` using `./public/index.html`
 
-## Troubleshooting
-
-### “ReferenceError: require is not defined in ES module scope”
-Your webpack config is being executed as ESM. Use `import` instead of `require`, and define `__dirname` via `import.meta.url` (already done in `apps/web/webpack.config.ts`).
-
-### Webpack “mode” TypeScript error
-Webpack expects `mode` to be one of `"development" | "production" | "none"`. If you derive it from `process.env.NODE_ENV`, narrow it to those values (already done).
 
 ---
 
