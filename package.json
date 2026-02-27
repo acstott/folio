@@ -1,0 +1,35 @@
+{
+  "name": "folio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack portfolio application (React + Express + PostgreSQL) demonstrating production-grade engineering patterns.",
+  "author": "Amanda Stott",
+  "license": "MIT",
+
+  "engines": {
+    "node": ">=18.0.0"
+  },
+
+  "workspaces": [
+    "apps/*",
+    "web"
+  ],
+
+  "scripts": {
+    "db:up": "docker compose -f infrastructure/docker-compose.yml up -d",
+    "db:down": "docker compose -f infrastructure/docker-compose.yml down",
+    "db:reset": "docker compose -f infrastructure/docker-compose.yml down -v && docker compose -f infrastructure/docker-compose.yml up -d",
+    "api:dev": "npm -w apps/api run dev",
+    "api:migrate": "npm -w apps/api run migrate",
+    "api:seed": "npm -w apps/api run seed",
+    "api:bootstrap": "npm -w apps/api run db:bootstrap",
+    "web:dev": "npm -w web run dev",
+    "web:build": "npm -w web run build",
+    "dev": "concurrently \"npm run api:dev\" \"npm run web:dev\"",
+    "clean": "rm -rf node_modules apps/*/node_modules web/node_modules"
+  },
+
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

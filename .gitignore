@@ -1,0 +1,57 @@
+# Node / package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.cache/
+.tmp/
+.temp/
+*.tsbuildinfo
+
+# Webpack / tooling caches
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+logs/
+*.log
+
+# TypeScript / Jest
+jest-cache/
+*.snap
+
+# Misc
+*.pid
+*.seed
+
+# WSL / Windows
+ehthumbs.db
